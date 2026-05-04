@@ -33,6 +33,19 @@ Registers a new user on the Velora platform.
   ```
 - **Responses:**
   - `201 Created`: Returns the user object and a JWT authentication token.
+    ```json
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "user": {
+        "_id": "60d0fe4f5311236168a109ca",
+        "fullname": {
+          "firstname": "John",
+          "lastname": "Doe"
+        },
+        "email": "john.doe@example.com"
+      }
+    }
+    ```
   - `400 Bad Request`: Validation errors (e.g., missing fields, invalid email format, password too short).
 
 ### 2. Login User
@@ -49,6 +62,19 @@ Authenticates an existing user and returns an access token.
   ```
 - **Responses:**
   - `200 OK`: Returns the user details and a JWT token.
+    ```json
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "user": {
+        "_id": "60d0fe4f5311236168a109ca",
+        "fullname": {
+          "firstname": "John",
+          "lastname": "Doe"
+        },
+        "email": "john.doe@example.com"
+      }
+    }
+    ```
   - `400 / 401`: Invalid email or password.
 
 ### 3. Get User Profile
@@ -60,6 +86,18 @@ Retrieves the logged-in user's profile data.
   - `Authorization: Bearer <your_jwt_token>` (or via cookies)
 - **Responses:**
   - `200 OK`: Returns the user's profile information.
+    ```json
+    {
+      "user": {
+        "_id": "60d0fe4f5311236168a109ca",
+        "fullname": {
+          "firstname": "John",
+          "lastname": "Doe"
+        },
+        "email": "john.doe@example.com"
+      }
+    }
+    ```
   - `401 Unauthorized`: Token is missing or invalid.
 
 ### 4. Logout User
@@ -71,6 +109,11 @@ Logs the user out by blacklisting their token or clearing auth cookies.
   - `Authorization: Bearer <your_jwt_token>` (or via cookies)
 - **Responses:**
   - `200 OK`: Logged out successfully.
+    ```json
+    {
+      "message": "Logged out"
+    }
+    ```
 
 ---
 
@@ -103,6 +146,25 @@ Registers a new driver and their associated vehicle.
   ```
 - **Responses:**
   - `201 Created`: Returns the captain object and a JWT authentication token.
+    ```json
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "captain": {
+        "_id": "60d0fe4f5311236168a109cb",
+        "fullname": {
+          "firstname": "James",
+          "lastname": "Smith"
+        },
+        "email": "captain.james@example.com",
+        "vehicles": {
+          "color": "Black",
+          "plate": "XYZ-9876",
+          "capacity": 3,
+          "vehicletype": "car"
+        }
+      }
+    }
+    ```
   - `400 Bad Request`: Validation errors or Captain already exists.
 
 ### 2. Login Captain
@@ -119,6 +181,25 @@ Authenticates a registered captain and returns an access token.
   ```
 - **Responses:**
   - `200 OK`: Returns the captain details and a JWT token.
+    ```json
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "captain": {
+        "_id": "60d0fe4f5311236168a109cb",
+        "fullname": {
+          "firstname": "James",
+          "lastname": "Smith"
+        },
+        "email": "captain.james@example.com",
+        "vehicles": {
+          "color": "Black",
+          "plate": "XYZ-9876",
+          "capacity": 3,
+          "vehicletype": "car"
+        }
+      }
+    }
+    ```
   - `400 / 401`: Invalid email or password.
 
 ### 3. Get Captain Profile
@@ -130,6 +211,24 @@ Retrieves the logged-in captain's profile and vehicle information.
   - `Authorization: Bearer <your_jwt_token>` (or via cookies)
 - **Responses:**
   - `200 OK`: Returns the captain's profile information.
+    ```json
+    {
+      "captain": {
+        "_id": "60d0fe4f5311236168a109cb",
+        "fullname": {
+          "firstname": "James",
+          "lastname": "Smith"
+        },
+        "email": "captain.james@example.com",
+        "vehicles": {
+          "color": "Black",
+          "plate": "XYZ-9876",
+          "capacity": 3,
+          "vehicletype": "car"
+        }
+      }
+    }
+    ```
   - `401 Unauthorized`: Token is missing or invalid.
 
 ### 4. Logout Captain
@@ -141,6 +240,11 @@ Logs the captain out securely.
   - `Authorization: Bearer <your_jwt_token>` (or via cookies)
 - **Responses:**
   - `200 OK`: Logged out successfully.
+    ```json
+    {
+      "message": "Logged out"
+    }
+    ```
 
 ---
 
