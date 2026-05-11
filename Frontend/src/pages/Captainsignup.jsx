@@ -16,6 +16,14 @@ const Captainsignup = () => {
   const [vehicleType, setvehicleType] = useState('')
   const [userDate, setuserDate] = useState({})
 
+  const capacityOptionsByType = {
+    car: ['4'],
+    auto: ['3'],
+    bike: ['1']
+  }
+
+  const capacityOptions = capacityOptionsByType[vehicleType] || []
+
   const { setCaptain } = React.useContext(CaptainContext)
   const navigate = useNavigate()
 
@@ -46,7 +54,7 @@ const Captainsignup = () => {
         const data = response.data
         localStorage.setItem('captainToken', data.token)
         setCaptain(data.captain)
-        navigate('/captain-login')
+        navigate('/captain-home')
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -123,27 +131,24 @@ const Captainsignup = () => {
                   required
                 >
                   <option value='' disabled>Capacity</option>
-                  <option value='1'>1</option>
-                  <option value='2'>2</option>
-                  <option value='3'>3</option>
-                  <option value='4'>4</option>
-                  <option value='5'>5</option>
-                  <option value='6'>6</option>
-                  <option value='7'>7</option>
-                  <option value='8'>8</option>
+                  {capacityOptions.map((capacity) => (
+                    <option key={capacity} value={capacity}>{capacity}</option>
+                  ))}
                 </select>
 
                 <select
                   className='bg-[#f3f4f6] ml-4 w-1/2 rounded-xl px-4 py-3 outline-none border focus:border-black focus:ring-1 focus:ring-black text-base text-gray-800 transition-all'
                   value={vehicleType}
-                  onChange={(e) => setvehicleType(e.target.value)}
+                  onChange={(e) => {
+                    setvehicleType(e.target.value)
+                    setvehicleCapacity('')
+                  }}
                   required
                 >
                   <option value='' disabled>Vehicle type</option>
                   <option value='car'>Car</option>
                   <option value='auto'>Auto</option>
                   <option value='bike'>Bike</option>
-                  <option value='van'>Van</option>
                 </select>
               </div>
               

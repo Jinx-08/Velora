@@ -6,7 +6,9 @@ import Usersignup from './pages/Usersignup'
 import Captainlogin from './pages/Captainlogin'
 import Captainsignup from './pages/Captainsignup'
 import Userprotectwrapper from './pages/Userprotectwrapper'
+import Captainprotectwrapper from './pages/Captainprotectwrapper'
 import Home from './pages/Home'
+import CaptainHome from './pages/CaptainHome'
 import { User } from 'lucide-react'
 
 const App = () => {
@@ -22,8 +24,21 @@ const App = () => {
           <Userprotectwrapper>
             <Home />
           </Userprotectwrapper>
+          } />
+
+        <Route path="/users/logout" element={ 
+          <Userprotectwrapper>
+            <Home />
+          </Userprotectwrapper> 
+          } />
+
+        <Route path='/captain-home' element={
+          <Captainprotectwrapper>
+            <CaptainHome />
+          </Captainprotectwrapper>
         } />
       </Routes>
+
     </div>
   )
 }
