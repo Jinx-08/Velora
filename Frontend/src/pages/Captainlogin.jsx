@@ -43,13 +43,13 @@ const Captainlogin = () => {
               <button type='submit' className='bg-black font-semibold text-white mb-5 py-3 px-4 rounded-xl w-full text-lg hover:bg-gray-800 transition-colors shadow-md'>Login</button>
 
               <p className='text-center text-sm text-gray-600'>
-                Join a fleet !! <Link to='/user-signup' className='text-blue-600 font-medium hover:underline ml-1'>Register as a Captain</Link>
+                Join a fleet !! <Link to='/captain-signup' className='text-blue-600 font-medium hover:underline ml-1'>Register as a Captain</Link>
               </p>
           </form>
         </div>
 
         <div className='mt-10'>
-          <Link to='/captain-login' className=' flex items-center justify-center bg-[#ee0166] hover:bg-[#0e9952] transition-colors font-semibold text-white py-3 px-4 rounded-xl w-full text-lg shadow-md'>
+          <Link to='/user-login' className=' flex items-center justify-center bg-[#ee0166] hover:bg-[#0e9952] transition-colors font-semibold text-white py-3 px-4 rounded-xl w-full text-lg shadow-md'>
             Sign in as User
           </Link>
         </div>
