@@ -13,7 +13,6 @@ module.exports.registerUser = async (req, res, next) => {
     }
 
     const { name: { firstname, lastname }, email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
 
     const isUserExist = await usermodel.findOne({ email });
     if (isUserExist) {
@@ -24,7 +23,7 @@ module.exports.registerUser = async (req, res, next) => {
         firstname, 
         lastname,
         email, 
-        password: hashedPassword });
+        password });
     
     const token = user.generateAuthToken();
 

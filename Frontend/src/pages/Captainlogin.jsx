@@ -1,27 +1,53 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import axios from 'axios'
+import { CaptainContext } from '../context/Captaincontext'
 import logo from '../assets/velora-driver.svg'
 
 
 const Captainlogin = () => {
 
   const [email, setemail] = useState('')
-    const [password, setpassword] = useState('')
-    const [userDate, setuserDate] = useState({})
-  
-  
-    const handleSubmit = (e) => {
-      setuserDate({ Email: email, Password: password })
-      console.log(userDate)
-      e.preventDefault()
-      setemail('')
-      setpassword('')
+  const [password, setpassword] = useState('')
+  const [userDate, setuserDate] = useState({})
+
+  const { setCaptain } = React.useContext(CaptainContext)
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setuserDate({ Email: email, Password: password })
+
+    const captainData = {
+      email: email,
+      password: password
     }
+
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/login`, captainData)
+
+      if (response.status === 200) {
+        const data = response.data
+        localStorage.setItem('captainToken', data.token)
+        setCaptain(data.captain)
+        navigate('/')
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        alert('Invalid email or password. Please try again.')
+      } else {
+        alert('An error occurred during login.')
+      }
+    }
+
+    setemail('')
+    setpassword('')
+  }
 
   return (
     <div className='min-h-screen bg-[#f8fafc] flex items-center justify-center p-4'>
-      <div className='w-full max-w-md bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 sm:p-10 flex flex-col justify-between min-h-[600px] border border-gray-100'>
+      <div className='w-full max-w-md bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 sm:p-10 flex flex-col justify-between min-h-150 border border-gray-100'>
         
         <div>
           <img className='w-40 mb-8' src={logo} alt="Logo" />

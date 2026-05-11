@@ -2,24 +2,54 @@ import React from 'react'
 import logo from '../assets/gemini-svg.svg'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import axios from 'axios'
+import { UserContext } from '../context/Usercontext'
+import { useNavigate } from 'react-router-dom'
+
 
 const Userlogin = () => {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [userDate, setuserDate] = useState({})
 
+  const {user , setUser} = React.useContext(UserContext)
 
-  const handleSubmit = (e) => {
-    setuserDate({ Email: email, Password: password })
-    console.log(userDate)
+  const navigate = useNavigate()
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setuserDate({ Email: email, Password: password })
+
+    const userData = {  
+      email: email,
+      password: password
+    }
+
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, userData)
+
+      if(response.status === 200){
+        const data = response.data
+        localStorage.setItem('token', data.token)
+        setUser(data.user)
+        navigate('/home')
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        alert("Invalid email or password. Please try again or create a new account.");
+      } else {
+        alert("An error occurred during login.");
+      }
+    }
+
     setemail('')
     setpassword('')
   }
 
   return (
     <div className='min-h-screen bg-[#f8fafc] flex items-center justify-center p-4'>
-      <div className='w-full max-w-md bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 sm:p-10 flex flex-col justify-between min-h-[600px] border border-gray-100'>
+      <div className='w-full max-w-md bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 sm:p-10 flex flex-col justify-between min-h-150 border border-gray-100'>
         
         <div>
           <img className='w-36 mb-10' src={logo} alt="Logo" />
