@@ -1,7 +1,18 @@
 import React from 'react'
 import { MapPin }  from 'lucide-react'
 
-const LocationSearchPanel = () => {
+const LocationSearchPanel = ({ suggestions, setVehiclePanel, setPanelOpen, setPickup, setDestination, activeField }) => {
+
+    const handleSuggestionClick = (suggestion) => {
+        if (activeField === 'pickup') {
+            setPickup(suggestion)
+        } else if (activeField === 'destination') {
+            setDestination(suggestion)
+        }
+        // setVehiclePanel(true)
+        // setPanelOpen(false)
+    }
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-start gap-2">
