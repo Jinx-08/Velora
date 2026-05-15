@@ -81,6 +81,9 @@ const Home = () => {
 
               <LocationSearchPanel />
         </div>
+        <div>
+          <img src="" alt="" />
+        </div>
 
 
       </div>
