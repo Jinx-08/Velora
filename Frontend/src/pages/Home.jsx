@@ -83,6 +83,7 @@ const Home = () => {
         </div>
         <div>
           <img src="" alt="" />
+          <img src="" alt="" />
         </div>
 
 
