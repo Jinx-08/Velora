@@ -3,9 +3,27 @@ import { MapPin }  from 'lucide-react'
 
 const LocationSearchPanel = () => {
   return (
-    <div className="flex items-center justify-start">
-      <MapPin className='p-1  ' />
-        <h4>Mumbai , Maharashtra , India</h4>
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center justify-start gap-2">
+        <MapPin className='p-1 rounded-3xl bg-[#f8fafc] border border-gray-300 ' />
+        <h4 className='text-lg font-semibold' >Mumbai , Maharashtra , India</h4>
+      </div>
+      
+      <div className="flex items-center justify-start gap-2">
+        <MapPin className='p-1 rounded-3xl bg-[#f8fafc] border border-gray-300 ' />
+          <h4 className='text-lg font-semibold' >Mumbai , Maharashtra , India</h4>
+      </div>
+      
+      <div className="flex items-center justify-start gap-2">
+        <MapPin className='p-1 rounded-3xl bg-[#f8fafc] border border-gray-300 ' />
+          <h4 className='text-lg font-semibold' >Mumbai , Maharashtra , India</h4>
+      </div>
+      
+      <div className="flex items-center justify-start gap-2">
+        <MapPin className='p-1 rounded-3xl bg-[#f8fafc] border border-gray-300 ' />
+          <h4 className='text-lg font-semibold' >Mumbai , Maharashtra , India</h4>
+      </div>
+    
     </div>
   )
 }
