@@ -84,6 +84,7 @@ const Home = () => {
         <div>
           <img src="" alt="" />
           <img src="" alt="" />
+          <h3>Popular Destinations</h3>
         </div>
 
 
