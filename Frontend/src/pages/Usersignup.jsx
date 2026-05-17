@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/gemini-svg.svg'
+import logo from '../assets/velora-logo.svg'
 import { Link , useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'

@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/gemini-svg.svg'
+import logo from '../assets/velora-logo.svg'
 import { Link } from 'react-router-dom'
 import Userlogin from './Userlogin'
 import { ArrowRightToLine } from 'lucide-react';
